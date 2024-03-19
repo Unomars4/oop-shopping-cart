@@ -19,7 +19,7 @@ export class ShoppingCart {
     public get total(): Totals {
         const sub = Number(this.items.reduce((sum, curr) => sum + curr.price, 0).toFixed(2));
         const tax = this.items.reduce((sum, curr) => sum + Number(((curr.price * this.taxRate) / 100).toFixed(2)), 0)
-        const total = sub + tax;
+        const total = Number((sub + tax).toFixed(2));
         return {
             sub,
             tax,
@@ -29,5 +29,6 @@ export class ShoppingCart {
 
     public emptyCart(): void {
         this.items = [];
+        this.totalCountPerProduct = {};
     }
 }

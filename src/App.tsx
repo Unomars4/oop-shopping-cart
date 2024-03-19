@@ -11,9 +11,7 @@ function App() {
 
     const toggleCart = (e: FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (dialog.current) {
-            dialog.current.showModal();
-        }
+        setShowCart(!showCart)
     }
 
     const handleCheckout = (e: FormEvent<HTMLButtonElement>) => {
@@ -27,7 +25,7 @@ function App() {
                 <Button type='cart-btn' label="Open Cart" clickHandler={toggleCart} />
             </header>
             <main className="products">
-                <Cart />
+                <Cart isOpen={showCart} />
                 {products?.map((item) => <ProductCard key={item.id} product={item} />)}
             </main>
         </>
